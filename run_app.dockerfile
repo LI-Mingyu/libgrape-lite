@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-RUN apt update; apt install -y build-essential cmake git mpich libgoogle-glog-dev 
+RUN apt update; apt install -y build-essential cmake git mpich libgoogle-glog-dev openssh-server amqp-tools
 COPY . /libgrape-lite-src
 WORKDIR /libgrape-lite-src/build
 RUN rm -rf *; cmake ..; make -j
