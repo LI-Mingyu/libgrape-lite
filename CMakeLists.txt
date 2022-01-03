@@ -6,12 +6,15 @@ set(LIBGRAPELITE_MINOR_VERSION 1)
 set(LIBGRAPELITE_PATCH_VERSION 0)
 set(LIBGRAPELITE_VERSION ${LIBGRAPELITE_MAJOR_VERSION}.${LIBGRAPELITE_MINOR_VERSION}.${LIBGRAPELITE_PATCH_VERSION})
 
+set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+set(CMAKE_EXE_LINKER_FLAGS "-static")
+
 # ------------------------------------------------------------------------------
 # cmake options
 # ------------------------------------------------------------------------------
 option(USE_JEMALLOC "Whether to use jemalloc." OFF)
 option(USE_HUGEPAGES "Whether to use hugepages." OFF)
-option(BUILD_SHARED_LIBS "Whether to build libgrape-lite as shared library" ON)
+option(BUILD_SHARED_LIBS "Whether to build libgrape-lite as shared library" OFF)
 option(PROFILING "Whether to enable profiling" OFF)
 option(WITH_ASAN "Build with Address Sanitizer" OFF)
 option(BUILD_LIBGRAPELITE_DOCS "Build libgrape-lite documentation" ON)
@@ -147,7 +150,7 @@ else ()
             examples/analytical_apps)
     set_target_properties(analytical_apps PROPERTIES OUTPUT_NAME run_app)
     target_link_libraries(analytical_apps grape-lite ${MPI_CXX_LIBRARIES}
-            ${GLOG_LIBRARIES} ${GFLAGS_LIBRARIES} ${CMAKE_DL_LIBS})
+            ${GLOG_LIBRARIES} ${GFLAGS_LIBRARIES} ${CMAKE_DL_LIBS} unwind rt)
     install_libgrapelite_target(analytical_apps)
 endif ()
 
