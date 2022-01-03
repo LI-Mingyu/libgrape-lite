@@ -17,6 +17,7 @@ WORKDIR /libgrape-lite-src/build
 RUN rm -rf *; cmake ..; make -j
 
 FROM ubuntu:18.04
+RUN apt update; apt install -y libunwind8 libgomp1
 COPY --from=builder /libgrape-lite-src/build/run_app /libgrape-lite-src/build/run_app
 COPY --from=builder /libgrape-lite-src/dataset /libgrape-lite-src/dataset
 COPY --from=builder /usr/local/bin/mpiexec.hydra /usr/local/bin/mpirun

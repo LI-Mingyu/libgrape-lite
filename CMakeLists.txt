@@ -7,7 +7,7 @@ set(LIBGRAPELITE_PATCH_VERSION 0)
 set(LIBGRAPELITE_VERSION ${LIBGRAPELITE_MAJOR_VERSION}.${LIBGRAPELITE_MINOR_VERSION}.${LIBGRAPELITE_PATCH_VERSION})
 
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
-set(CMAKE_EXE_LINKER_FLAGS "-static")
+# set(CMAKE_EXE_LINKER_FLAGS "-static") #有这个甚至在bash运行./run_app的时候报文件不存在？！
 
 # ------------------------------------------------------------------------------
 # cmake options
